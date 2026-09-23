@@ -1,0 +1,83 @@
+:root {
+    --navy-deep: #0a192f;
+    --navy-light: #112240;
+    --gold-shimmer: #d4af37;
+    --maroon-rich: #800020;
+    --green-deep: #1a4d2e;
+    --green-light: #2d5a3d;
+    --cream-bg: #f8f5f2;
+    --text-dark: #e0e0e0;
+    --border-radius: 16px;
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+body {
+    margin: 0;
+    color: var(--text-dark);
+    background-color: var(--navy-deep);
+    font-family: Georgia, serif;
+
+    .whimsical-header {
+        padding: 1.5rem;
+        background-color: var(--navy-light);
+    }
+
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        max-width: 1000px;
+        margin: auto;
+    }
+
+    nav ul {
+        display: flex;
+        gap: 1rem;
+        list-style: none;
+    }
+
+    nav a {
+        color: var(--gold-shimmer);
+        text-decoration: none;
+    }
+
+    .main-container {
+        max-width: 800px;
+        padding: 2rem;
+        margin: auto;
+    }
+
+    .about-card {
+        display: flex;
+        padding: 2rem;
+        background-color: var(--navy-light);
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-soft);
+    }
+    .profile-image {
+        width: 25rem;
+        height: 25rem;
+        overflow: hidden;
+    }
+    .selfie {
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+        object-fit: cover;
+    }
+    .about-content {
+        padding: 2rem;
+    }
+
+    h2 {
+        color: var(--gold-shimmer);
+    }
+
+    .hobbies-list {
+        padding: 1rem;
+        background-color: var(--green-deep);
+        border-radius: var(--border-radius);
+    }
+    .whimsical-footer {
+        text-align: center;
+    }
+}
