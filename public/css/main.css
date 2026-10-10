@@ -7,19 +7,24 @@
     --green-light: #2d5a3d;
     --cream-bg: #f8f5f2;
     --text-dark: #e0e0e0;
+    --title-color: #2c5aa0;
     --border-radius: 16px;
     --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 body {
     margin: 0;
-    color: var(--text-dark);
-    background-color: var(--navy-deep);
+    color: var(--navy-deep);
+    background-color: var(--cream-bg);
     font-family: Georgia, serif;
-
+    
+    &.blue-theme { background-color: #e3f2fd; }
+    &.green-theme { background-color: #e8f5e8; }
+    &.red-theme { background-color: #ffebee; }
+    
     .whimsical-header {
         padding: 1.5rem;
-        background-color: var(--navy-light);
+        background-color: var(--cream-bg);
     }
 
     .header-container {
@@ -36,7 +41,7 @@ body {
     }
 
     nav a {
-        color: var(--gold-shimmer);
+        color: var(--navy-deep);
         text-decoration: none;
     }
 
@@ -44,14 +49,29 @@ body {
         max-width: 800px;
         padding: 2rem;
         margin: auto;
+        h1 {
+            color: var(--title-color);
+        }
     }
-
-    .about-card {
+}
+/* Home page styles */
+main {
+    .hero-image {
+        width: 100%;
+        height: auto;
+        border-radius: var(--border-radius);
+    }
+}
+.error-image {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+}
+/* About page styles */
+.about-card {
         display: flex;
         padding: 2rem;
-        background-color: var(--navy-light);
-        border-radius: var(--border-radius);
-        box-shadow: var(--shadow-soft);
+        background-color: var(--cream-bg);
     }
     .profile-image {
         width: 25rem;
@@ -61,7 +81,7 @@ body {
     .selfie {
         width: 100%;
         height: 100%;
-        border-radius: 20px;
+        border-radius: var(--border-radius);
         object-fit: cover;
     }
     .about-content {
@@ -69,15 +89,9 @@ body {
     }
 
     h2 {
-        color: var(--gold-shimmer);
+        color: var(--navy-deep);
     }
 
-    .hobbies-list {
-        padding: 1rem;
-        background-color: var(--green-deep);
-        border-radius: var(--border-radius);
-    }
     .whimsical-footer {
         text-align: center;
     }
-}
