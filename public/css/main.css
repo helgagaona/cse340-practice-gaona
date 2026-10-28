@@ -95,3 +95,21 @@ main {
     .whimsical-footer {
         text-align: center;
     }
+
+.navigation {
+    background-color: var(--navy-light);
+    width: fit-content;
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+    margin-top: 20px;
+    a {
+        color: white;
+        text-decoration: none;
+    }
+    &:hover {
+        color:#0a192f;
+        background-color: var(--gold-shimmer);
+        
+    }
+
+}
