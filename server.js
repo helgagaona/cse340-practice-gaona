@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import session from 'express-session';
 import connectPgSimple from 'connect-pg-simple';
 import { startSessionCleanup } from './src/utils/session-cleanup.js';
+import flash from './src/middleware/flash.js';
 
 // Import MVC components
 import routes from './src/controllers/routes.js';
@@ -62,6 +63,12 @@ app.set('views', path.join(__dirname, 'src/views'));
  */
 app.use(addLocalVariables);
 app.use(express.urlencoded({ extended: false }));
+
+// Global middleware (sets res.locals variables)
+app.use(addLocalVariables);
+
+// Flash message middleware (must come after session and global middleware)
+app.use(flash);
 
 /**
  * Routes

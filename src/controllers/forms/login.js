@@ -12,10 +12,13 @@ const loginValidation = [
         .trim()
         .isEmail()
         .withMessage('Please provide a valid email address')
-        .normalizeEmail(),
-
+        .normalizeEmail()
+        .isLength({ max: 255})
+        .withMessage('Email address is too long'),
     body('password')
-        .isLength({ min: 8 })
+        .notEmpty()
+        .withMessage('Password is required')
+        .isLength({ min: 8, max: 128 })
         .withMessage('Password is required')
 ];
 
@@ -38,10 +41,11 @@ const processLogin = async (req, res) => {
 
     if (!errors.isEmpty()) {
         // TODO: Log validation errors to console
-        console.error('Validation errors:', errors.array());
+        errors.array().forEach(error => {
+            req.flash('error', error.msg);
+        });
         // TODO: Redirect back to /login
-        res.redirect('/login')
-        return;
+        return res.redirect('/login');
     }
 
     // TODO: Extract email and password from req.body
@@ -51,17 +55,15 @@ const processLogin = async (req, res) => {
         const user = await findUserByEmail(email);
         // TODO: If not found, log "User not found" and redirect to /login
         if (!user) {
-            console.log('User not found');
-            res.redirect('/login');
-            return;
+            req.flash('error', 'Invalid email or password');
+            return res.redirect('/login');
         }
         // TODO: Verify password using verifyPassword(password, user.password)
         const isValid = await verifyPassword(password, user.password);
         // TODO: If password incorrect, log "Invalid password" and redirect to /login
         if (!isValid) {
-            console.log('Invalid password');
-            res.redirect('/login');
-            return;
+            req.flash('error', 'Invalid email or password');
+            return res.redirect('/login');
         }
         // SECURITY: Remove password from user object before storing in session
         delete user.password;
@@ -69,11 +71,13 @@ const processLogin = async (req, res) => {
         // TODO: Store user in session: req.session.user = user
         req.session.user = user;
         // TODO: Redirect to /dashboard
-        res.redirect('/dashboard')
+        req.flash('success', 'Login successful! Welcome!');
+            res.redirect('/dashboard');
     } catch (error) {
         // Model functions do not catch errors, so handle them here
         // TODO: Log error to console
         console.error('Login error', error);
+        req.flash('error', 'Unable to login. Please try again later');
         // TODO: Redirect to /login
         res.redirect('/login');
     }
